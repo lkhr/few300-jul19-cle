@@ -2,6 +2,7 @@
 export const featureName = 'mathFeature';
 import * as fromQuestions from './questions.reducer';
 import * as fromSavedScores from './saved-scores.reducer';
+import * as fromUIHints from './ui-hints.reducer';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { QuestionModel, ScoresModel } from '../models';
@@ -13,7 +14,8 @@ export interface MathState {
 
 export const reducers = {
   questions: fromQuestions.reducer,
-  savedScores: fromSavedScores.savedScoresReducer
+  savedScores: fromSavedScores.savedScoresReducer,
+  ui: fromUIHints.reducer
 };
 
 
