@@ -15,10 +15,13 @@ export class GameComponent implements OnInit {
 
   model$: Observable<QuestionModel>;
   atEnd$: Observable<boolean>;
+  missedQuestions$: Observable<number>;
   gameOver$: Observable<boolean>;
   constructor(private store: Store<MathState>, private router: Router) { }
 
+
   ngOnInit() {
+    // this.missedQuestions$ = this.store.select(s => s.questions.missedQuestions.length);
     this.model$ = this.store.select(selectQuestionModel);
     this.atEnd$ = this.store.select(selectAtEndOfQuestions);
     this.gameOver$ = this.store.select(selectGameOverMan);
@@ -35,9 +38,11 @@ export class GameComponent implements OnInit {
     this.store.dispatch(playAgain());
   }
 
-  finish(guessE1: HTMLInputElement) {
-    const guess = guessE1.valueAsNumber;
+  finish(guessEl: HTMLInputElement) {
+    const guess = guessEl.valueAsNumber;
     this.store.dispatch(answerProvided({ guess }));
+    // TODO: Go to the route "math/scores"
     this.router.navigate(['math', 'scores']);
   }
+
 }

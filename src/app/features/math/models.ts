@@ -4,16 +4,25 @@ export interface QuestionModel {
   question: string;
 }
 
+
 export interface ScoresModel {
-  scores: ScoresLineModel[];
+  scores: ScoreLineModel[];
   numberOfQuestions: number;
   numberCorrect: number;
-  numbersWrong: number;
+  numberWrong: number;
 }
-interface ScoresLineModel {
+interface ScoreLineModel {
   num: number;
   question: string;
   answer: number;
   incorrect: boolean;
-  provideAnswer: number;
+  providedAnswer: number;
+}
+
+export interface SavedScoresModel {
+  id: number;
+  who: string;
+  right: number;
+  wrong: number;
+  when: string;
 }
