@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Add a new math question for the Math Game</h5>
+    <div class="form-group">
+      <label for="answer">Question:</label>
+      <input class="form-control"
+             type="text"
+             id="question">
+      <label for="answer">Answer:</label>
+      <input class="form-control"
+             type="number"
+             min="0"
+             id="answer">
+    </div>
+    <input type="button"
+           [hidden]="saved"
+           class="btn btn-primary"
+           (click)="saveQuestion()"
+           value="Save Question">
+
+  </div>
+</div>

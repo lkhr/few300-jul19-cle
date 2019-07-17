@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AdminModule } from './features/admin/admin.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     MathModule,
+    AdminModule,
     AppRoutingModule, // after any feature modules.,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
@@ -31,6 +33,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,16 @@ export interface QuestionModel {
   question: string;
 }
 
+export interface AddQuestionModel {
+  question: string;
+  answer: number;
+}
+
+export interface SaveQuestionModel {
+  id: number;
+  question: string;
+  answer: number;
+}
 
 export interface ScoresModel {
   scores: ScoreLineModel[];
