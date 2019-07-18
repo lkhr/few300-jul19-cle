@@ -6,8 +6,8 @@ export interface UIHintsState {
 }
 
 const initialState: UIHintsState = {
-  hasError: false,
-  errorMessage: ''
+  hasError: true,
+  errorMessage: 'this is broke'
 };
 
 export function reducer(state: UIHintsState = initialState, action: Action) {

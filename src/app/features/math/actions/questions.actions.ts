@@ -6,6 +6,11 @@ export const answerProvided = createAction(
   props<{ guess: number }>()
 );
 
+export const questionSaved = createAction(
+  '[add-question] question saved',
+  props<{ id: number, question: string, answer: number }>()
+);
+
 export const playAgain = createAction(
   '[math] play again'
 );

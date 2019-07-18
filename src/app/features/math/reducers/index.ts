@@ -6,6 +6,7 @@ import * as fromUIHints from './ui-hints.reducer';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { QuestionModel, ScoresModel } from '../models';
+import { UIHintsState } from './ui-hints.reducer';
 
 export interface MathState {
   questions: fromQuestions.MathQuestionsState;
@@ -21,11 +22,14 @@ export const reducers = {
 
 // 1. Create a feature selector (that knows how to find the feature in the state)
 const selectMathFeature = createFeatureSelector<MathState>(featureName);
+const selectUIHintsFeature = createFeatureSelector<UIHintsState>('uifeature');
 
 // 2. Create a selector for each "branch" of the MathState (e.g., questions)
 
 const selectQuestionsBranch = createSelector(selectMathFeature, m => m.questions);
 const selectSavedScoresBranch = createSelector(selectMathFeature, m => m.savedScores);
+const selectUIBranch = createSelector(selectUIHintsFeature, u => u.errorMessage);
+
 // 3. Selectors that are "helpers" to get the data you need for step 4.
 const selectCurrentQuestionId = createSelector(selectQuestionsBranch, q => q.currentQuestionId);
 // Object Destructuring - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment

@@ -5,17 +5,19 @@
       <label for="answer">Question:</label>
       <input class="form-control"
              type="text"
+             #question
              id="question">
       <label for="answer">Answer:</label>
       <input class="form-control"
              type="number"
+             #answer
              min="0"
              id="answer">
     </div>
     <input type="button"
            [hidden]="saved"
            class="btn btn-primary"
-           (click)="saveQuestion()"
+           (click)="saveQuestion(question.value, answer.value)"
            value="Save Question">
 
   </div>

@@ -22,9 +22,8 @@ export class AddQuestionComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveQuestion() {
-    this.store.dispatch(actions.saveQuestion(this.addQuestionModel.question,
-      this.addQuestionModel.answer));
+  saveQuestion(question: string, answer: number) {
+    this.store.dispatch(actions.saveQuestion(question, answer));
     this.saved = true;
   }
 

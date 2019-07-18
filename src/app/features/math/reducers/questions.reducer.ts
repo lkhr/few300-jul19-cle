@@ -66,13 +66,7 @@ const mathReducer = createReducer(
     const newState = tassign(tempState, { currentQuestionId: state.currentQuestionId + 1 });
     return newState;
   }),
-  on(questionActions.questionSaved, (state, action) => {
-    const tempState = { ...state };
-
-    const newState = tassign(tempState, {});
-    return newState;
-  })
-
+  on(questionActions.saveQuestion, (state, action) => adapter.addOne(action.payload, state)),
 );
 
 // Note: We have to do this because the ng AOT compiler cannot import from the result of a function call
