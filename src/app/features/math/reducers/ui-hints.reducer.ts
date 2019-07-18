@@ -5,7 +5,7 @@ export interface UIHintsState {
   errorMessage: string;
 }
 
-const initialState: UIHintsState = {
+export const initialState: UIHintsState = {
   hasError: true,
   errorMessage: 'this is broke'
 };

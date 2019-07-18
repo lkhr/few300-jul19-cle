@@ -1,11 +1,9 @@
 <div class="alert alert-danger"
-     *ngIf="(hasError$ | async)">
+     *ngIf="(hasError$ | async) == true">
   <h3>GAME OVER YOU LOSE!</h3>
   <input type="button"
          class="btn btn-success"
-         value="Clear Error"
-         (click)="clearError()">
-
+         value="Clear Error">
 </div>
 <div class="row">
   <div class="col-2">

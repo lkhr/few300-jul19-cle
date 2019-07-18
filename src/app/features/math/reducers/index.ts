@@ -6,11 +6,14 @@ import * as fromUIHints from './ui-hints.reducer';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { QuestionModel, ScoresModel } from '../models';
-import { UIHintsState } from './ui-hints.reducer';
 
 export interface MathState {
   questions: fromQuestions.MathQuestionsState;
   savedScores: fromSavedScores.SavedScoresState;
+}
+
+export interface UIErrorState {
+  uiErrors: fromUIHints.UIHintsState;
 }
 
 export const reducers = {
@@ -19,24 +22,28 @@ export const reducers = {
   ui: fromUIHints.reducer
 };
 
-
 // 1. Create a feature selector (that knows how to find the feature in the state)
 const selectMathFeature = createFeatureSelector<MathState>(featureName);
-const selectUIHintsFeature = createFeatureSelector<UIHintsState>('uifeature');
+const selectUIHintsFeature = createFeatureSelector<UIErrorState>('uiFeature');
 
 // 2. Create a selector for each "branch" of the MathState (e.g., questions)
 
 const selectQuestionsBranch = createSelector(selectMathFeature, m => m.questions);
 const selectSavedScoresBranch = createSelector(selectMathFeature, m => m.savedScores);
-const selectUIBranch = createSelector(selectUIHintsFeature, u => u.errorMessage);
+const selectUIHintsBranch = createSelector(selectUIHintsFeature, u => u.uiErrors);
+
 
 // 3. Selectors that are "helpers" to get the data you need for step 4.
 const selectCurrentQuestionId = createSelector(selectQuestionsBranch, q => q.currentQuestionId);
+const selectHasError = createSelector(selectUIHintsBranch, u => u.hasError);
+const selectErrorMessage = createSelector(selectUIHintsBranch, u => u.errorMessage);
+
 // Object Destructuring - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 const {
   selectTotal: selectTotalNumberOfQuestions,
   selectAll: selectAllQuestions,
-  selectEntities: selectQuestionEntities } = fromQuestions.adapter.getSelectors(selectQuestionsBranch);
+  selectEntities: selectQuestionEntities
+} = fromQuestions.adapter.getSelectors(selectQuestionsBranch);
 
 const { selectAll: selectAllSavedScores } = fromSavedScores.adapter.getSelectors(selectSavedScoresBranch);
 const selectSelectedQuestion = createSelector(
@@ -122,4 +129,9 @@ export const selectHideScores = createSelector(
 export const selectHideGame = createSelector(
   selectHideScores,
   (x) => !x
+);
+
+export const selectUIHasError = createSelector(
+  selectHasError,
+  (hasError) => hasError
 );
