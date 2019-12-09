@@ -15,7 +15,7 @@ export const playAgain = createAction(
   '[math] play again'
 );
 
-let currentId = 50_000;
+let currentId = 5;
 export const saveQuestion = createAction(
   '[add-question] save question',
   (question: string, answer: number) => {
